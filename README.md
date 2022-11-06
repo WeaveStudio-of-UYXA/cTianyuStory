@@ -29,6 +29,7 @@
   ```
  
 * 3.编写构造函数
+
   在构造函数里面你要做三个事情：调用基类构造函数以确定生成目标地址，建立基本人物对象或做其他事情，调用doSpawn()
   * 调用基类构造函数
     ```C++
@@ -99,4 +100,15 @@ def defStory(this):
         this.Player.say("好的。")
         this.storyEnd()
  ```
+ * 特性1：调用Character.say函数，自动生成Player的等待文本
+ * 特性2：调用Character.say函数，用False作为第二参数，可以取消自动生成Player等待文本
+   * 注意：只要想自定义Player回复文本，就应当取消上一个Player等待文本的自动生成 
+ * 特性3：调用this.branch函数，传入一个列表，可以生成初始化一个剧情分支
+   * 注意：在this.branch初始化剧情分之前，如果有一个NPC在讲话，应该传入False取消这次自动生成，否则等待文本会和选项文本冲突
+ * 特性4：在this.branch后，调用if this.branchIn(int)即可进入分支选项的编写
+   * 注意：分支可以嵌套，但不稳定
+   * 注意：branchIn理论上对应分支序号，但是实际上该参数没有意义，每次调用this.branchIn后内部计数自动+1，所以如果需要更高可读性，也可直接在branchIn()里面写上对应的分支文本，Python通过Any接受任意参数，C++有一个QString重载可以接受字符串参数。
+   * 注意：每个branch结束时，应当调用this.branchEnd()进行数据回收
+ * 特性5：需要中途终止或在分之内终止故事时，调用this.storyEnd()
+   * 注意：这个storyEnd不想与break或者return之类的玩意，因此在storyEnd之后，该需要的branchEnd一个不能漏
     
