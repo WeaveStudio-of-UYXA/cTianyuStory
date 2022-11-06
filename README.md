@@ -100,13 +100,14 @@ def defStory(this):
         this.Player.say("好的。")
         this.storyEnd()
  ```
- * 特性1：调用Character.say函数，自动生成Player的等待文本
+ * 特性1：调用Character.say函数，自动生成Player的等待文本，默认值是“Next > >”
  * 特性2：调用Character.say函数，用False作为第二参数，可以取消自动生成Player等待文本
    * 注意：只要想自定义Player回复文本，就应当取消上一个Player等待文本的自动生成 
- * 特性3：调用this.branch函数，传入一个列表，可以生成初始化一个剧情分支
-   * 注意：在this.branch初始化剧情分之前，如果有一个NPC在讲话，应该传入False取消这次自动生成，否则等待文本会和选项文本冲突
+ * 特性3：调用this.branch函数，传入一个列表，可以初始化一个剧情分支
+   * 注意：在this.branch初始化剧情分支之前，如果有一个NPC在讲话，应该传入False取消他的Player等待自动生成，否则等待文本会和选项文本冲突
  * 特性4：在this.branch后，调用if this.branchIn(int)即可进入分支选项的编写
    * 注意：分支可以嵌套，但不稳定
+   * 注意：只要你看了源码你就会发现这玩意每次都返回True，这就是说，我们利用了Python和C++的语法缩进和括号范围来提供更加直观的分支编写，所以这if对于编写者本身是有意义的，但是对于Python或者C++语言本身意义不大，调用此函数后。后台会切换当前的分支标记以供if内的剧情文本获取，从而实现YAML的标签跳转逻辑。
    * 注意：branchIn理论上对应分支序号，但是实际上该参数没有意义，每次调用this.branchIn后内部计数自动+1，所以如果需要更高可读性，也可直接在branchIn()里面写上对应的分支文本，Python通过Any接受任意参数，C++有一个QString重载可以接受字符串参数。
    * 注意：每个branch结束时，应当调用this.branchEnd()进行数据回收
  * 特性5：需要中途终止或在分之内终止故事时，调用this.storyEnd()
