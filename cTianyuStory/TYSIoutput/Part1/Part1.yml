@@ -1,0 +1,78 @@
+start: 雅音.Main0_0
+Lines:
+  Player:
+    color: <BLUE>
+    Main_先看看咋回去::接着干再说::我不知道_START0:
+      text: 先看看咋回去
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道0_1
+
+    Main_先看看咋回去::接着干再说::我不知道_START1:
+      text: 接着干再说
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道1_4
+
+    Main_先看看咋回去::接着干再说::我不知道_START2:
+      text: 我不知道
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道2_6
+
+    Main_先看看咋回去::接着干再说::我不知道0_3:
+      text: Next> >
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道0_2
+
+    Main_先看看咋回去::接着干再说::我不知道0_4:
+      text: Next> >
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道0_3
+
+    Main_先看看咋回去::接着干再说::我不知道0_5:
+      text: Next> >
+      next: NONETEXT
+
+    Main_先看看咋回去::接着干再说::我不知道1_6:
+      text: Next> >
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道1_5
+
+    Main_先看看咋回去::接着干再说::我不知道1_7:
+      text: Next> >
+      next: NONETEXT
+
+    Main_先看看咋回去::接着干再说::我不知道2_8:
+      text: Next> >
+      next: 雅音.Main_先看看咋回去::接着干再说::我不知道2_7
+
+    Main_先看看咋回去::接着干再说::我不知道2_9:
+      text: Next> >
+      next: END
+
+  雅音:
+    color: <BLUE>
+    Main0_0:
+      text: <br><br><br>接下来你打算怎么处理这破事<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道_START0,Player.Main_先看看咋回去::接着干再说::我不知道_START1,Player.Main_先看看咋回去::接着干再说::我不知道_START2
+
+    Main_先看看咋回去::接着干再说::我不知道0_1:
+      text: <br><br><br>有一说一这事确实难整<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道0_3
+
+    Main_先看看咋回去::接着干再说::我不知道0_2:
+      text: <br><br><br>不过我会尽力<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道0_4
+
+    Main_先看看咋回去::接着干再说::我不知道0_3:
+      text: <br><br><br>你先去睡觉吧<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道0_5
+
+    Main_先看看咋回去::接着干再说::我不知道1_4:
+      text: <br><br><br>其实我不太推荐<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道1_6
+
+    Main_先看看咋回去::接着干再说::我不知道1_5:
+      text: <br><br><br>你还是先休息吧<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道1_7
+
+    Main_先看看咋回去::接着干再说::我不知道2_6:
+      text: <br><br><br>....emmmmm<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道2_8
+
+    Main_先看看咋回去::接着干再说::我不知道2_7:
+      text: <br><br><br>唉<br><br><br>
+      next: Player.Main_先看看咋回去::接着干再说::我不知道2_9
+
