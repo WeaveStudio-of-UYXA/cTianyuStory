@@ -100,6 +100,7 @@ def defStory(this):
         this.Player.say("好的。")
         this.storyEnd()
  ```
+ 
  * 特性1：调用Character.say函数，自动生成Player的等待文本，默认值是“Next > >”
  * 特性2：调用Character.say函数，用False作为第二参数，可以取消自动生成Player等待文本
    * 注意：只要想自定义Player回复文本，就应当取消上一个Player等待文本的自动生成 
@@ -109,8 +110,12 @@ def defStory(this):
    * 注意：分支可以嵌套，但不稳定
    * 注意：只要你看了源码你就会发现这玩意每次都返回True，这就是说，我们利用了Python和C++的语法缩进和括号范围来提供更加直观的分支编写，所以这if对于编写者本身是有意义的，但是对于Python或者C++语言本身意义不大，调用此函数后。后台会切换当前的分支标记以供if内的剧情文本获取，从而实现YAML的标签跳转逻辑。
    * 注意：生怕有人读完上面一条还没有想到：由于上条阐述的代码机理，不要写else或elif，只能写if
-   * 注意：branchIn理论上对应分支序号，但是实际上该参数没有意义，每次调用this.branchIn后内部计数自动+1，所以如果需要更高可读性，也可直接在branchIn()里面写上对应的分支文本，Python通过Any接受任意参数，C++有一个QString重载可以接受字符串参数。
+   * 注意：branchIn理论上对应分支序号，但是实际上该参数没有意义，每次调用this.branchIn后内部计数自动+1，所以如果需要更高可读性，也可直接在branchIn()里面写上对应的分支文本， Python通过Any接受任意参数，C++有一个QString重载可以接受字符串参数，比如：
+   ```Python
+    if this.branchIn("去雪原镇"):
+      this.雅音.say("那你就去吧，我这就带你去。", False)
+   ```
    * 注意：每个branch结束时，应当调用this.branchEnd()进行数据回收
  * 特性5：需要中途终止或在分之内终止故事时，调用this.storyEnd()
-   * 注意：这个storyEnd不想与break或者return之类的玩意，因此在storyEnd之后，该需要的branchEnd一个不能漏
+   * 注意：这个storyEnd不像break或者return之类的玩意，因此在storyEnd之后，该需要的branchEnd数据回收一个不能漏
     
